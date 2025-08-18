@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
     const { notes, selectedAgent } = await req.json();
     const user = await currentUser();
     
-    // Check if the selected doctor requires subscription and if user has pro plan
+   /* // Check if the selected doctor requires subscription and if user has pro plan
     if (selectedAgent?.subscriptionRequired) {
         //@ts-ignore
         const hasPro = user?.organizationMemberships?.[0]?.organization?.publicMetadata?.plan === 'pro' ||
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
                 { status: 403 }
             );
         }
-    }
+    }*/
     
     try {
         const sessionId = uuidv4();

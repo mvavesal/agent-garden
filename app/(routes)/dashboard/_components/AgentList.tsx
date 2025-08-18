@@ -1,7 +1,7 @@
 "use client"
 import { AIDoctorAgents } from '@/shared/list'
 import React, { useState, useCallback } from 'react'
-import AgentCard, { doctorAgent } from './AgentCard'
+import AgentCard, { Agent } from './AgentCard'
 import AgentSearch from './AgentSearch'
 
 /**
@@ -10,9 +10,9 @@ import AgentSearch from './AgentSearch'
  * Includes search and filtering functionality.
  */
 function AgentList() {
-    const [filteredAgents, setFilteredAgents] = useState<doctorAgent[]>(AIDoctorAgents)
+    const [filteredAgents, setFilteredAgents] = useState<Agent[]>(AIDoctorAgents)
 
-    const handleFilteredAgents = useCallback((agents: doctorAgent[]) => {
+    const handleFilteredAgents = useCallback((agents: Agent[]) => {
         setFilteredAgents(agents)
     }, [])
 
@@ -35,7 +35,7 @@ function AgentList() {
                     {filteredAgents.map((doctor, index) => (
                         <div key={doctor.id}>
                             {/* 🧑‍⚕️ Render each doctor agent card */}
-                            <AgentCard doctorAgent={doctor} />
+                            <AgentCard agent={doctor} />
                         </div>
                     ))}
                 </div>

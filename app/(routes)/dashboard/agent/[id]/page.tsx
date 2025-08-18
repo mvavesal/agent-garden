@@ -9,7 +9,7 @@ import { IconArrowRight, IconArrowLeft, IconStethoscope, IconCrown, IconStar, Ic
 import { Loader2Icon } from 'lucide-react'
 import axios from 'axios'
 import { AIDoctorAgents } from '@/shared/list'
-import { doctorAgent } from '../../_components/AgentCard'
+import { Agent } from '../../_components/AgentCard'
 import { sampleChats, sampleReviews } from '@/shared/sampleChats'
 
 // Type definitions for chat and review objects
@@ -38,7 +38,7 @@ export default function AgentDetailsPage() {
     const agentId = parseInt(params.id as string)
     
     // Find the specific agent
-    const agent = AIDoctorAgents.find((agent: doctorAgent) => agent.id === agentId)
+    const agent = AIDoctorAgents.find((agent: Agent) => agent.id === agentId)
 
     // ✅ Check if the user has a 'pro' plan using Clerk's has() helper
     //@ts-ignore
@@ -71,7 +71,7 @@ export default function AgentDetailsPage() {
             // Post the new session to backend API
             const result = await axios.post('/api/session-chat', {
                 notes: 'New Query',
-                selectedDoctor: agent
+                selectedAgent: agent
             })
 
             if (result.data?.sessionId) {

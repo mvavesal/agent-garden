@@ -49,7 +49,7 @@ function HistoryTable({ historyList }: Props) {
                         <TableRow key={index}>
                             {/* Doctor specialty */}
                             <TableCell className="font-medium">
-                                {record.selectedDoctor.specialist}
+                                {record.selectedAgent?.specialist || 'Unknown Agent'}
                             </TableCell>
 
                             {/* Session notes or symptoms */}

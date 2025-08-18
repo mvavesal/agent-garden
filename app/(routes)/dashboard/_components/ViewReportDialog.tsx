@@ -50,7 +50,7 @@ function ViewReportDialog({ record }: props) {
                                 <h3 className='text-lg font-semibold text-blue-500'>Session Info</h3>
                                 <hr className='border-t-2 border-blue-500 my-2' />
                                 <div className='grid grid-cols-2 gap-3'>
-                                    <p><strong>Doctor:</strong> {record?.selectedDoctor?.specialist}</p>
+                                    <p><strong>Doctor:</strong> {record?.selectedAgent?.specialist}</p>
                                     <p><strong>User:</strong> {report?.user || 'Anonymous'}</p>
                                     <p><strong>Consulted On:</strong> {formatDate}</p>
                                     <p><strong>Agent:</strong> {report?.agent}</p>

@@ -3,7 +3,7 @@
 import axios from 'axios';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import { doctorAgent } from '../../_components/AgentCard';
+import { Agent } from '../../_components/AgentCard';
 import { Circle, Loader, PhoneCall, PhoneOff } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,7 @@ export type SessionDetail = {
     notes: string,
     sessionId: string,
     report: JSON,
-    selectedDoctor: doctorAgent,
+    selectedAgent: Agent,
     createdOn: string,
 }
 
@@ -40,6 +40,7 @@ function MedicalVoiceAgent() {
     const [liveTranscript, setLiveTranscript] = useState<string>(''); // Live transcription text
     const [messages, setMessages] = useState<messages[]>([]); // Finalized chat messages log
     const [loading, setLoading] = useState(false); // Loading state for UI feedback
+    const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false); // State for description expand/collapse
     const router = useRouter();
 
     // Store references to event listener functions for proper cleanup
@@ -55,6 +56,23 @@ function MedicalVoiceAgent() {
     useEffect(() => {
         if (sessionId) GetSessionDetails();
     }, [sessionId]);
+
+    // Cleanup Vapi instance and event listeners when component unmounts or user navigates away
+    useEffect(() => {
+        return () => {
+            if (vapiInstance) {
+                console.log('Cleaning up Vapi instance on component unmount');
+                vapiInstance.stop();
+                
+                // Remove all event listeners
+                if (eventListeners.callStart) vapiInstance.off('call-start', eventListeners.callStart);
+                if (eventListeners.callEnd) vapiInstance.off('call-end', eventListeners.callEnd);
+                if (eventListeners.message) vapiInstance.off('message', eventListeners.message);
+                if (eventListeners.speechStart) vapiInstance.off('speech-start', eventListeners.speechStart);
+                if (eventListeners.speechEnd) vapiInstance.off('speech-end', eventListeners.speechEnd);
+            }
+        };
+    }, [vapiInstance, eventListeners]);
 
     // Fetch session detail data from backend API
     const GetSessionDetails = async () => {
@@ -83,16 +101,18 @@ function MedicalVoiceAgent() {
         setVapiInstance(vapi);
 
         // Configuration for the AI voice agent
+        //https://github.com/playht/text-to-speech-api/blob/master/Voices.md
+       //name:sessionDetail.selectedAgent?.specialist,
         const VapiAgentConfig = {
-            name: 'AI Medical Doctor Voice Agent',
-            firstMessage: "Hi there! I’m your AI Medical Assistant. I’m here to help you with any health questions or concerns you might have today. How are you feeling?",
+            name: 'expo',
+            firstMessage: sessionDetail.selectedAgent?.firstMessage,
             transcriber: {
                 provider: 'assembly-ai',
                 language: 'en'
             },
             voice: {
                 provider: 'playht',
-                voiceId: sessionDetail.selectedDoctor?.voiceId ?? 'will'
+                voiceId: sessionDetail.selectedAgent?.voiceId ?? 'will'
             },
             model: {
                 provider: 'openai',
@@ -100,7 +120,7 @@ function MedicalVoiceAgent() {
                 messages: [
                     {
                         role: 'system',
-                        content: sessionDetail.selectedDoctor?.agentPrompt
+                        content: sessionDetail.selectedAgent?.agentPrompt
                     }
                 ]
             }
@@ -224,17 +244,44 @@ function MedicalVoiceAgent() {
             {sessionDetail && (
                 <div className='flex items-center flex-col mt-10'>
                     <Image
-                        src={sessionDetail.selectedDoctor?.image}
-                        alt={sessionDetail.selectedDoctor?.specialist ?? ''}
+                        src={sessionDetail.selectedAgent?.image || '/doctor1.png'}
+                        alt={sessionDetail.selectedAgent?.specialist ?? ''}
                         width={120}
                         height={120}
                         className='h-[100px] w-[100px] object-cover rounded-full'
                     />
-                    <h2 className='mt-2 text-lg'>{sessionDetail.selectedDoctor?.specialist}</h2>
-                    <p className='text-sm text-gray-400'>AI Medical Voice Agent</p>
+                    <h2 className='mt-2 text-lg'>{sessionDetail.selectedAgent?.specialist}</h2>
+                    <p className='text-sm text-gray-400'>{sessionDetail.selectedAgent?.category || 'AI Medical Voice Agent'}</p>
+                    {sessionDetail.selectedAgent?.description && (
+                        <div className='text-sm text-gray-500 mt-1 text-center max-w-md'>
+                            <p className={`${!isDescriptionExpanded ? 'line-clamp-2' : ''}`}>
+                                {sessionDetail.selectedAgent.description}
+                            </p>
+                            <button
+                                onClick={() => setIsDescriptionExpanded(!isDescriptionExpanded)}
+                                className='text-blue-500 hover:text-blue-700 text-xs mt-1 underline'
+                            >
+                                {isDescriptionExpanded ? 'Show less' : 'Show more'}
+                            </button>
+                        </div>
+                    )}
+                    {sessionDetail.selectedAgent?.tags && sessionDetail.selectedAgent.tags.length > 0 && (
+                        <div className='flex flex-wrap gap-1 mt-2 justify-center'>
+                            {sessionDetail.selectedAgent.tags.slice(0, 3).map((tag, index) => (
+                                <span key={index} className='text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded'>
+                                    {tag}
+                                </span>
+                            ))}
+                            {sessionDetail.selectedAgent.tags.length > 3 && (
+                                <span className='text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded'>
+                                    +{sessionDetail.selectedAgent.tags.length - 3} more
+                                </span>
+                            )}
+                        </div>
+                    )}
 
                     {/* Show last 4 finalized messages and live transcript */}
-                    <div className='mt-12 overflow-y-auto flex flex-col items-center px-10 md:px-28 lg:px-52 xl:px-72'>
+                    <div className='my-12 overflow-y-auto flex flex-col items-center px-10 md:px-28 lg:px-52 xl:px-72'>
                         {messages.slice(-4).map((msg, index) => (
                             <h2 className='text-gray-400 p-2' key={index}>
                                 {msg.role}: {msg.text}

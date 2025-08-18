@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 import { ArrowRight, Loader2 } from 'lucide-react'
 import axios from 'axios'
-import AgentCard, { doctorAgent } from './AgentCard'
+import AgentCard, { Agent } from './AgentCard'
 import SuggestedDoctorCard from './SuggestedDoctorCard'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@clerk/nextjs'
@@ -24,8 +24,8 @@ function AddNewSessionDialog() {
     // 🧠 Local state management
     const [note, setNote] = useState<string>(); // stores user symptom input
     const [loading, setLoading] = useState(false); // tracks loading state
-    const [suggestedDoctors, setSuggestedDoctors] = useState<doctorAgent[]>(); // stores suggested doctors
-    const [selectedDoctor, setSelectedDoctor] = useState<doctorAgent>(); // tracks selected doctor
+    const [suggestedDoctors, setSuggestedDoctors] = useState<Agent[]>(); // stores suggested doctors
+    const [selectedAgent, setSelectedAgent] = useState<Agent>(); // tracks selected agent
     const [historyList, setHistoryList] = useState<SessionDetail[]>([]); // stores past session list
 
     const router = useRouter();
@@ -66,7 +66,7 @@ function AddNewSessionDialog() {
         try {
             const result = await axios.post('/api/session-chat', {
                 notes: note,
-                selectedDoctor: selectedDoctor
+                selectedAgent: selectedAgent
             });
 
             console.log(result.data);
@@ -74,7 +74,7 @@ function AddNewSessionDialog() {
                 // 🔁 Redirect to the new session page
                 router.push('/dashboard/medical-agent/' + result.data.sessionId);
             }
-        } catch (error) {
+        } catch (error: any) {
             if (error.response?.status === 403) {
                 console.error('Premium subscription required for this agent');
                 // Additional handling could be added here like showing a toast notification
@@ -122,9 +122,9 @@ function AddNewSessionDialog() {
                                         <SuggestedDoctorCard
                                             doctorAgent={doctor}
                                             key={index}
-                                            setSelectedDoctor={() => setSelectedDoctor(doctor)}
+                                            setSelectedDoctor={() => setSelectedAgent(doctor)}
                                             //@ts-ignore
-                                            selectedDoctor={selectedDoctor}
+                                            selectedDoctor={selectedAgent}
                                         />
                                     ))}
                                 </div>
@@ -150,7 +150,7 @@ function AddNewSessionDialog() {
                         </Button>
                     ) : (
                         <Button
-                            disabled={loading || !selectedDoctor}
+                            disabled={loading || !selectedAgent}
                             onClick={() => onStartConsultation()}
                         >
                             Start Consultation {loading ? <Loader2 className='animate-spin' /> : <ArrowRight />}

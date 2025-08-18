@@ -1,11 +1,11 @@
 import React from 'react'
-import { doctorAgent } from './AgentCard'
+import { Agent } from './AgentCard'
 import Image from 'next/image'
 
 type props = {
-    doctorAgent: doctorAgent,             // doctor data to display
-    setSelectedDoctor: (doctor: doctorAgent) => void, // function to set selected doctor
-    selectedDoctor: doctorAgent          // currently selected doctor
+    doctorAgent: Agent,             // doctor data to display
+    setSelectedDoctor: (doctor: Agent) => void, // function to set selected doctor
+    selectedDoctor: Agent          // currently selected doctor
 }
 
 /**

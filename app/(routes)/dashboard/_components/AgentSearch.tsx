@@ -20,11 +20,11 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command"
-import type { doctorAgent } from "./AgentCard"
+import type { Agent } from "./AgentCard"
 
 type AgentSearchProps = {
-    agents: doctorAgent[]
-    onFilteredAgents: (filteredAgents: doctorAgent[]) => void
+    agents: Agent[]
+    onFilteredAgents: (filteredAgents: Agent[]) => void
 }
 
 const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(" ")

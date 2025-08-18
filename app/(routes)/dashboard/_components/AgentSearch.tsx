@@ -1,6 +1,6 @@
 "use client"
 import React, { useMemo, useState, useEffect } from "react"
-import { Search, X, Tag, Component, Sparkles } from "lucide-react"
+import { Search, X, Tag, Component, Filter, Sparkles } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -11,7 +11,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 import { Separator } from "@/components/ui/separator"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetClose } from "@/components/ui/sheet"
 import {
     Command,
     CommandEmpty,
@@ -172,19 +172,26 @@ export default function AgentSearch({ agents, onFilteredAgents }: AgentSearchPro
                     <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
                         <SheetTrigger asChild>
                             <Button variant="outline" size="icon" className="md:hidden" aria-label="Open filters">
-                                <Tag className="h-4 w-4" />
+                                <Filter className="h-4 w-4" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="right" className="w-80 sm:w-96">
-                            <div className="space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <h3 className="text-base font-semibold">Filters</h3>
+                        <SheetContent side="right" className="w-80 sm:w-96 p-4 sm:p-6" hideCloseButton>
+                            <div className="flex items-center justify-between mb-4">
+                                <SheetTitle className="text-base font-semibold">Filters</SheetTitle>
+                                <div className="flex items-center gap-2">
                                     {hasFilters && (
-                                        <Button variant="ghost" size="sm" onClick={clearAll}>
+                                        <Button variant="ghost" size="sm" onClick={clearAll} className="opacity-70 hover:opacity-100 transition-opacity">
                                             Reset
                                         </Button>
                                     )}
+                                    <SheetClose asChild>
+                                        <Button variant="ghost" size="sm" className="p-2 opacity-70 hover:opacity-100 transition-opacity" aria-label="Close">
+                                            <X className="h-4 w-4" />
+                                        </Button>
+                                    </SheetClose>
                                 </div>
+                            </div>
+                            <div className="space-y-4">
                                 <div>
                                     <div className="text-sm mb-2 font-medium">Plan</div>
                                     <div className="flex gap-2">

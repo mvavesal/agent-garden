@@ -17,12 +17,12 @@ function AgentList() {
     }, [])
 
     return (
-        <div className='mt-10'>
+        <div className='mt-6'>
             {/* 🧠 Section Title */}
             <h2 className='font-bold text-xl'>Specialist Agents</h2>
 
             {/* 🔍 Search and Filter Component */}
-            <div className='mt-5'>
+            <div className='mt-4'>
                 <AgentSearch 
                     agents={AIDoctorAgents} 
                     onFilteredAgents={handleFilteredAgents}
@@ -31,7 +31,7 @@ function AgentList() {
 
             {/* 🩺 Responsive grid layout for doctor cards */}
             {filteredAgents.length > 0 ? (
-                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 mt-5'>
+                <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 mt-4'>
                     {filteredAgents.map((doctor, index) => (
                         <div key={doctor.id}>
                             {/* 🧑‍⚕️ Render each doctor agent card */}

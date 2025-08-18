@@ -9,7 +9,7 @@ function DashboardLayout({
     return (
         <div>
             <AppHeader />
-            <div className='px-10 md:px-20 lg:px-40 py-10'>
+            <div className='max-w-7xl mx-auto px-4 md:px-8 lg:px-16 py-6'>
                 {children}
             </div>
         </div>

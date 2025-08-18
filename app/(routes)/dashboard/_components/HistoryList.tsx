@@ -30,10 +30,10 @@ function HistoryList() {
     }
 
     return (
-        <div className='mt-10'>
+        <div className='mt-6'>
             {/* 📦 If no history, show empty state UI */}
             {historyList.length == 0 ? (
-                <div className='flex items-center flex-col justify-center p-7 border border-dashed rounded-2xl border-2'>
+                <div className='flex items-center flex-col justify-center p-4 md:p-6 border border-dashed rounded-2xl border-2'>
                     <Image
                         src={'/medical-assistance.png'}
                         alt='empty'

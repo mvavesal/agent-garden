@@ -142,7 +142,8 @@ function AgentCard({ agent }: props) {
                         onClick={onStartConsultation}
                         disabled={!paidUser && agent.subscriptionRequired} // disable if doctor is premium & user isn't
                     >
-                        Start Consultation{' '}
+                        <span className='hidden sm:inline'>Start Consultation</span>
+                        <span className='inline sm:hidden'>Start</span>{' '}
                         {loading ? (
                             <Loader2Icon className='animate-spin' />
                         ) : (

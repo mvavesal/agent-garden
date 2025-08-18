@@ -91,7 +91,7 @@ export default function AgentDetailsPage() {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="container mx-auto px-2 sm:px-4 py-8 max-w-7xl">
             {/* Back button */}
             <div className="mb-6">
                 <Button
@@ -158,7 +158,7 @@ export default function AgentDetailsPage() {
                         <div className="pt-4">
                             <Button
                                 size="lg"
-                                className="px-8 py-3 text-lg"
+                                className="w-full sm:w-auto px-8 py-3 text-lg"
                                 onClick={onStartConsultation}
                                 disabled={(!paidUser && agent.subscriptionRequired) || loading}
                             >

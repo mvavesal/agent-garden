@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+.next/cache/
+.next/trace
+.vercel/
+.swc/
+.eslintcache
+
+# TypeScript
+*.tsbuildinfo
+
+# Env & local
+.env*
+!.env.example
+.next-env.d.ts
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Testing/coverage (optional)
+coverage/
+.playwright-cache/
+playwright-report/
+cypress/videos/
+cypress/screenshots/
+
+# OS/Editors
+.DS_Store
+.vscode/
+.idea/

@@ -194,8 +194,8 @@ export const AIDoctorAgents = [
         description: "Expert travel consultant specializing in personalized vacation planning and comprehensive travel guidance. Provides professional assistance with destination recommendations, itinerary planning, budget optimization, and travel logistics coordination. Offers expertise in accommodation selection, transportation arrangements, cultural experiences, local attractions, and travel safety considerations. Experienced in creating memorable travel experiences for various preferences including adventure travel, luxury vacations, family trips, solo adventures, business travel, and cultural immersion journeys while ensuring seamless travel planning from start to finish.",
         image: "/travel-advisor.jpg",
         agentPrompt: "You are an enthusiastic Travel Advisor AI. Ask about travel preferences, destinations of interest, and budget to provide personalized vacation recommendations and travel planning assistance.",
-        voiceId: "emily",
-        subscriptionRequired: true,
+        voiceId: "Paige",
+        subscriptionRequired: false,
         tags: ["Travel Planning", "Vacation Advice", "Destination Recommendations", "Itinerary Planning", "Budget Travel", "Luxury Travel", "Adventure Travel", "Cultural Tours", "Premium Plan"]
     }
 ];

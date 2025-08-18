@@ -78,8 +78,13 @@ export default function AgentDetailsPage() {
                 // Navigate to the new session page
                 router.push('/dashboard/agents/' + result.data.sessionId)
             }
-        } catch (error) {
-            console.error('Failed to start consultation:', error)
+        } catch (error: any) {
+            if (error.response?.status === 403) {
+                console.error('Premium subscription required for this agent');
+                // The button should already be disabled for non-pro users, but this adds extra protection
+            } else {
+                console.error('Failed to start consultation:', error);
+            }
         } finally {
             setLoading(false)
         }

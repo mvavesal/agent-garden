@@ -62,16 +62,27 @@ function AddNewSessionDialog() {
     // 🩺 Handles "Start Consultation" button — saves session and redirects
     const onStartConsultation = async () => {
         setLoading(true);
-        const result = await axios.post('/api/session-chat', {
-            notes: note,
-            selectedDoctor: selectedDoctor
-        });
+        
+        try {
+            const result = await axios.post('/api/session-chat', {
+                notes: note,
+                selectedDoctor: selectedDoctor
+            });
 
-        console.log(result.data);
-        if (result.data?.sessionId) {
-            // 🔁 Redirect to the new session page
-            router.push('/dashboard/medical-agent/' + result.data.sessionId);
+            console.log(result.data);
+            if (result.data?.sessionId) {
+                // 🔁 Redirect to the new session page
+                router.push('/dashboard/medical-agent/' + result.data.sessionId);
+            }
+        } catch (error) {
+            if (error.response?.status === 403) {
+                console.error('Premium subscription required for this agent');
+                // Additional handling could be added here like showing a toast notification
+            } else {
+                console.error('Failed to start consultation:', error);
+            }
         }
+        
         setLoading(false);
     }
 

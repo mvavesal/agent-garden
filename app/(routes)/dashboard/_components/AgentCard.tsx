@@ -49,15 +49,24 @@ function AgentCard({ doctorAgent }: props) {
     const onStartConsultation = async () => {
         setLoading(true);
 
-        // Post the new session to backend API
-        const result = await axios.post('/api/session-chat', {
-            notes: 'New Query',
-            selectedDoctor: doctorAgent
-        });
+        try {
+            // Post the new session to backend API
+            const result = await axios.post('/api/session-chat', {
+                notes: 'New Query',
+                selectedDoctor: doctorAgent
+            });
 
-        if (result.data?.sessionId) {
-            // Navigate to the new session page
-            router.push('/dashboard/agents/' + result.data.sessionId);
+            if (result.data?.sessionId) {
+                // Navigate to the new session page
+                router.push('/dashboard/agents/' + result.data.sessionId);
+            }
+        } catch (error) {
+            if (error.response?.status === 403) {
+                console.error('Premium subscription required for this agent');
+                // The button should already be disabled for non-pro users, but this adds extra protection
+            } else {
+                console.error('Failed to start consultation:', error);
+            }
         }
 
         setLoading(false);

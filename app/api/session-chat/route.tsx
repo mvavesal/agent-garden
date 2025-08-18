@@ -5,15 +5,31 @@ import { desc, eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuidv4 } from 'uuid';
 export async function POST(req: NextRequest) {
-    const { notes, selectedDoctor } = await req.json();
+    const { notes, selectedAgent } = await req.json();
     const user = await currentUser();
+    
+    // Check if the selected doctor requires subscription and if user has pro plan
+    if (selectedAgent?.subscriptionRequired) {
+        //@ts-ignore
+        const hasPro = user?.organizationMemberships?.[0]?.organization?.publicMetadata?.plan === 'pro' ||
+                      user?.publicMetadata?.plan === 'pro' ||
+                      user?.privateMetadata?.plan === 'pro';
+        
+        if (!hasPro) {
+            return NextResponse.json(
+                { error: "Premium subscription required for this agent" }, 
+                { status: 403 }
+            );
+        }
+    }
+    
     try {
         const sessionId = uuidv4();
         const result = await db.insert(SessionChatTable).values({
             sessionId: sessionId,
             createdBy: user?.primaryEmailAddress?.emailAddress,
             notes: notes,
-            selectedDoctor: selectedDoctor,
+            selectedAgent: selectedAgent,
             createdOn: (new Date()).toString()
             //@ts-ignore
         }).returning({ SessionChatTable });

@@ -125,6 +125,13 @@ export const sampleChats = {
         { sender: "agent", message: "Excellent research question! What specific aspects of productivity are you most interested in - individual performance, team collaboration, or organizational outcomes?" },
         { sender: "user", message: "Mainly individual performance and whether people actually get more or less done at home." },
         { sender: "agent", message: "Based on recent studies, individual productivity often increases 13-50% for remote workers due to fewer interruptions and commute time savings. However, this varies by personality type, home environment, and job requirements. The key factors are workspace setup, clear boundaries, and communication tools." }
+    ],
+    19: [ // Travel Advisor
+        { sender: "agent", message: "Hello, fellow adventurer! I'm your enthusiastic Travel Advisor AI, ready to help plan your perfect getaway! Where would you love to explore next?" },
+        { sender: "user", message: "I've always wanted to visit Japan, but I'm not sure about the best time to go or what to see." },
+        { sender: "agent", message: "Japan is absolutely magical! What type of experience interests you most - cherry blossoms, cultural immersion, food adventures, or perhaps the autumn foliage?" },
+        { sender: "user", message: "I'd love to see the cherry blossoms and experience traditional culture. My budget is around $3000 for a week." },
+        { sender: "agent", message: "Perfect timing for cherry blossom season! I'd recommend late March to early May. For $3000, you can experience Kyoto's temples, Tokyo's energy, and maybe a traditional ryokan stay. Consider a 7-day itinerary with 3 days in Tokyo, 3 in Kyoto, and 1 day for travel. Would you like me to break down the budget and must-see cultural sites?" }
     ]
 };
 
@@ -219,5 +226,10 @@ export const sampleReviews = {
         { name: "Dr. Anderson", rating: 5, comment: "Impressive research synthesis! Helped me understand complex data trends for my academic paper.", date: "2 hours ago" },
         { name: "Sarah_Researcher", rating: 4, comment: "Good fact-checking capabilities, but needed more recent studies for cutting-edge research.", date: "4 days ago" },
         { name: "AnalyticalMind", rating: 5, comment: "Excellent at breaking down complex research findings into actionable insights!", date: "1 week ago" }
+    ],
+    19: [
+        { name: "Emily R.", rating: 5, comment: "Amazing trip to Japan! The cherry blossom timing was perfect and the budget breakdown was spot-on. Best travel planning experience ever!", date: "1 day ago" },
+        { name: "Adventure_Seeker", rating: 4, comment: "Great destination recommendations and itinerary planning. Needed more specific flight booking guidance though.", date: "3 days ago" },
+        { name: "Marco T.", rating: 5, comment: "Planned our entire European honeymoon perfectly! Every restaurant and hotel recommendation was fantastic. Saved us hours of research!", date: "1 week ago" }
     ]
 };

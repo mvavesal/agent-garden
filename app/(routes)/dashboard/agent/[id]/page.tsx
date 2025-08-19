@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@clerk/nextjs'
-import { IconArrowRight, IconArrowLeft, IconStethoscope, IconCrown, IconStar, IconStarFilled, IconMessage } from '@tabler/icons-react'
+import { IconArrowRight, IconArrowLeft, IconStethoscope, IconCrown, IconStar, IconStarFilled, IconMessage, IconCopy } from '@tabler/icons-react'
 import { Loader2Icon, Phone } from 'lucide-react'
 import axios from 'axios'
 import { AIDoctorAgents } from '@/shared/list'
@@ -87,6 +87,19 @@ export default function AgentDetailsPage() {
             }
         } finally {
             setLoading(false)
+        }
+    }
+
+    /**
+     * 📋 Handle Copy Phone Number
+     * Copies the agent's phone number to the clipboard
+     */
+    const copyPhoneNumber = async (phoneNumber: string) => {
+        try {
+            await navigator.clipboard.writeText(phoneNumber)
+            // You could add a toast notification here if needed
+        } catch (error) {
+            console.error('Failed to copy phone number:', error)
         }
     }
 
@@ -175,17 +188,29 @@ export default function AgentDetailsPage() {
                                     )}
                                 </Button>
                                 
-                                {/* Call Button */}
+                                {/* Call Button with Copy Icon */}
                                 {agent.phoneNumber && agent.phoneNumber.trim() !== "" && (
-                                    <Button
-                                        variant="outline"
-                                        className="w-full sm:w-auto px-8 h-12 text-lg mt-3 sm:mt-0"
-                                        onClick={() => window.location.href = `tel:${agent.phoneNumber}`}
-                                        aria-label={`Call ${agent.specialist} at ${agent.phoneNumber}`}
-                                    >
-                                        <Phone className="mr-2 h-5 w-5" />
-                                        Call {agent.phoneNumber}
-                                    </Button>
+                                    <div className="flex items-center gap-2 w-full sm:w-auto mt-3 sm:mt-0">
+                                        <Button
+                                            variant="outline"
+                                            className="flex-1 sm:flex-none px-8 h-12 text-lg"
+                                            onClick={() => window.location.href = `tel:${agent.phoneNumber}`}
+                                            aria-label={`Call ${agent.specialist} at ${agent.phoneNumber}`}
+                                        >
+                                            <Phone className="mr-2 h-5 w-5" />
+                                            Call {agent.phoneNumber}
+                                        </Button>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="h-12 w-12 flex-shrink-0"
+                                            onClick={() => copyPhoneNumber(agent.phoneNumber)}
+                                            aria-label={`Copy phone number ${agent.phoneNumber} to clipboard`}
+                                            title="Copy phone number"
+                                        >
+                                            <IconCopy className="h-4 w-4" />
+                                        </Button>
+                                    </div>
                                 )}
                             </div>
                             

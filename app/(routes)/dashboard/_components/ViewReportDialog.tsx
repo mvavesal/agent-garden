@@ -18,7 +18,7 @@ type props = {
 /**
  * ViewReportDialog Component
  * 
- * Displays a full detailed medical report in a dialog when the user clicks "View Report".
+ * Displays a full detailed AI report in a dialog when the user clicks "View Report".
  */
 function ViewReportDialog({ record }: props) {
     const report: any = record?.report // Extract the report object from the session record

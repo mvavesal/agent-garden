@@ -305,7 +305,7 @@ const SkeletonFive = () => {
 };
 const items = [
     {
-        title: "AI Medical Transcription",
+        title: "AI Transcription",
         description: (
             <span className="text-sm">
                 Convert doctor-patient conversations into accurate medical transcripts in real-time.

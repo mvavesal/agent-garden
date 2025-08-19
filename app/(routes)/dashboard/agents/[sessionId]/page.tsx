@@ -25,13 +25,9 @@ type messages = {
 }
 
 /**
- * MedicalVoiceAgent Component
- * 
- * Provides an AI-powered medical voice assistant interface where users can
- * start a voice call with an AI doctor agent, interact in real-time, 
- * view live transcripts, and generate a consultation report.
+ * VoiceAgent Component
  */
-function MedicalVoiceAgent() {
+function VoiceAgent() {
     const { sessionId } = useParams(); // Get sessionId from route parameters
     const [sessionDetail, setSessionDetail] = useState<SessionDetail>(); // Current session details
     const [callStarted, setCallStarted] = useState(false); // Call connection status
@@ -251,7 +247,7 @@ function MedicalVoiceAgent() {
                         className='h-[100px] w-[100px] object-cover rounded-full'
                     />
                     <h2 className='mt-2 text-lg'>{sessionDetail.selectedAgent?.specialist}</h2>
-                    <p className='text-sm text-gray-400'>{sessionDetail.selectedAgent?.category || 'AI Medical Voice Agent'}</p>
+                    <p className='text-sm text-gray-400'>{sessionDetail.selectedAgent?.category || 'AI Voice Agent'}</p>
                     {sessionDetail.selectedAgent?.description && (
                         <div className='text-sm text-gray-500 mt-1 text-center max-w-md'>
                             <p className={`${!isDescriptionExpanded ? 'line-clamp-2' : ''}`}>
@@ -346,4 +342,4 @@ function MedicalVoiceAgent() {
     );
 }
 
-export default MedicalVoiceAgent;
+export default VoiceAgent;

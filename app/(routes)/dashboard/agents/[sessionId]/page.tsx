@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { Agent } from '../../_components/AgentCard';
-import { Circle, Loader, PhoneCall, PhoneOff } from 'lucide-react';
+import { Circle, Loader, PhoneCall, PhoneOff, MessageSquare } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Vapi from '@vapi-ai/web';
@@ -280,17 +280,53 @@ function MedicalVoiceAgent() {
                         </div>
                     )}
 
-                    {/* Show last 4 finalized messages and live transcript */}
-                    <div className='my-12 overflow-y-auto flex flex-col items-center px-10 md:px-28 lg:px-52 xl:px-72'>
-                        {messages.slice(-4).map((msg, index) => (
-                            <h2 className='text-gray-400 p-2' key={index}>
-                                {msg.role}: {msg.text}
-                            </h2>
-                        ))}
-                        {liveTranscript && (
-                            <h2 className='text-lg'>
-                                {currentRole} : {liveTranscript}
-                            </h2>
+                    {/* Chat conversation with bubble design */}
+                    <div className="bg-white p-6 rounded-lg border my-12 max-w-4xl w-full">
+                        <h3 className="text-xl font-semibold mb-4 flex items-center">
+                            <MessageSquare className="mr-2 h-5 w-5" />
+                            Live Conversation
+                        </h3>
+                        <div className="space-y-3 max-h-80 overflow-y-auto">
+                            {messages.slice(-4).map((msg, index) => (
+                                <div
+                                    key={index}
+                                    className={`flex ${
+                                        msg.role === 'assistant' ? 'justify-start' : 'justify-end'
+                                    }`}
+                                >
+                                    <div
+                                        className={`max-w-[80%] p-3 rounded-xl ${
+                                            msg.role === 'assistant'
+                                                ? 'bg-blue-50 text-blue-900 border border-blue-200 rounded-tl-none'
+                                                : 'bg-gray-50 text-gray-900 border border-gray-200 rounded-tr-none'
+                                        }`}
+                                    >
+                                        <p className="text-sm leading-relaxed">{msg.text}</p>
+                                    </div>
+                                </div>
+                            ))}
+                            {liveTranscript && (
+                                <div
+                                    className={`flex ${
+                                        currentRole === 'assistant' ? 'justify-start' : 'justify-end'
+                                    }`}
+                                >
+                                    <div
+                                        className={`max-w-[80%] p-3 rounded-xl opacity-70 ${
+                                            currentRole === 'assistant'
+                                                ? 'bg-blue-50 text-blue-900 border border-blue-200 rounded-tl-none'
+                                                : 'bg-gray-50 text-gray-900 border border-gray-200 rounded-tr-none'
+                                        }`}
+                                    >
+                                        <p className="text-sm leading-relaxed">{liveTranscript}</p>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        {messages.length > 0 && (
+                            <p className="text-xs text-gray-500 mt-3 italic">
+                                Live conversation transcript showing the last 4 messages.
+                            </p>
                         )}
                     </div>
 

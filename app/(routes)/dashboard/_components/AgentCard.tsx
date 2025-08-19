@@ -23,7 +23,9 @@ export type Agent = {
     voiceId?: string,
     subscriptionRequired: boolean,
     tags?: string[],
-    gender?: string
+    gender?: string,
+    assistantId?: string,
+    phoneNumber?: string,
 }
 
 type props = {

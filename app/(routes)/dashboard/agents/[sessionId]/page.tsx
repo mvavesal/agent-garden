@@ -104,7 +104,7 @@ function MedicalVoiceAgent() {
         //https://github.com/playht/text-to-speech-api/blob/master/Voices.md
        //name:sessionDetail.selectedAgent?.specialist,
         const VapiAgentConfig = {
-            name: 'expo',
+            name: sessionDetail.selectedAgent?.assistantId??'expo',
             firstMessage: sessionDetail.selectedAgent?.firstMessage,
             transcriber: {
                 provider: 'assembly-ai',

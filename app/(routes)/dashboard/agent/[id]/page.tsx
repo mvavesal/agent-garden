@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@clerk/nextjs'
 import { IconArrowRight, IconArrowLeft, IconStethoscope, IconCrown, IconStar, IconStarFilled, IconMessage } from '@tabler/icons-react'
-import { Loader2Icon } from 'lucide-react'
+import { Loader2Icon, Phone } from 'lucide-react'
 import axios from 'axios'
 import { AIDoctorAgents } from '@/shared/list'
 import { Agent } from '../../_components/AgentCard'
@@ -156,24 +156,38 @@ export default function AgentDetailsPage() {
 
                         {/* Start Consultation Button */}
                         <div className="pt-4">
-                            <Button
-                                size="lg"
-                                className="w-full sm:w-auto px-8 py-3 text-lg"
-                                onClick={onStartConsultation}
-                                disabled={(!paidUser && agent.subscriptionRequired) || loading}
-                            >
-                                {loading ? (
-                                    <>
-                                        <Loader2Icon className="mr-2 h-5 w-5 animate-spin" />
-                                        Starting Consultation...
-                                    </>
-                                ) : (
-                                    <>
-                                        Start Consultation
-                                        <IconArrowRight className="ml-2 h-5 w-5" />
-                                    </>
+                            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6">
+                                <Button
+                                    className="w-full sm:w-auto px-8 h-12 text-lg"
+                                    onClick={onStartConsultation}
+                                    disabled={(!paidUser && agent.subscriptionRequired) || loading}
+                                >
+                                    {loading ? (
+                                        <>
+                                            <Loader2Icon className="mr-2 h-5 w-5 animate-spin" />
+                                            Starting Consultation...
+                                        </>
+                                    ) : (
+                                        <>
+                                            Start Consultation
+                                            <IconArrowRight className="ml-2 h-5 w-5" />
+                                        </>
+                                    )}
+                                </Button>
+                                
+                                {/* Call Button */}
+                                {agent.phoneNumber && agent.phoneNumber.trim() !== "" && (
+                                    <Button
+                                        variant="outline"
+                                        className="w-full sm:w-auto px-8 h-12 text-lg mt-3 sm:mt-0"
+                                        onClick={() => window.location.href = `tel:${agent.phoneNumber}`}
+                                        aria-label={`Call ${agent.specialist} at ${agent.phoneNumber}`}
+                                    >
+                                        <Phone className="mr-2 h-5 w-5" />
+                                        Call {agent.phoneNumber}
+                                    </Button>
                                 )}
-                            </Button>
+                            </div>
                             
                             {!paidUser && agent.subscriptionRequired && (
                                 <p className="text-sm text-gray-600 mt-2">

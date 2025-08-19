@@ -11,7 +11,9 @@ export const AIDoctorAgents = [
         voiceId: "will",
         subscriptionRequired: false,
         tags: ["Primary Care", "General Health", "Common Symptoms", "Cold & Flu", "Headaches", "Fever", "First Aid", "Health Screening", "Free Consultation"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: "+1 (346) 282 7358"
     },
     {
         id: 19,
@@ -24,7 +26,9 @@ export const AIDoctorAgents = [
         voiceId: "ruby",
         subscriptionRequired: false,
         tags: ["Travel Planning", "Vacation Advice", "Destination Recommendations", "Itinerary Planning", "Budget Travel", "Luxury Travel", "Adventure Travel", "Cultural Tours", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: "+1 (326) 697 2845"
     },
     {
         id: 16,
@@ -37,7 +41,9 @@ export const AIDoctorAgents = [
         voiceId: "chris",
         subscriptionRequired: true,
         tags: ["Italian Cuisine", "Pasta Making", "Pizza Preparation", "Risotto", "Traditional Recipes", "Italian Ingredients", "Wine Pairing", "Authentic Cooking", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 17,
@@ -50,7 +56,9 @@ export const AIDoctorAgents = [
         voiceId: "will",
         subscriptionRequired: true,
         tags: ["Home Improvement", "Carpentry", "Plumbing", "Electrical Work", "Tool Usage", "DIY Projects", "Maintenance", "Safety Protocols", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 18,
@@ -63,7 +71,9 @@ export const AIDoctorAgents = [
         voiceId: "donna",
         subscriptionRequired: true,
         tags: ["Research Analysis", "Data Interpretation", "Market Research", "Academic Research", "Statistical Analysis", "Fact Checking", "Trend Analysis", "Evidence Review", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 15,
@@ -76,7 +86,9 @@ export const AIDoctorAgents = [
         voiceId: "jack",
         subscriptionRequired: true,
         tags: ["Indian Cuisine", "Spice Blending", "Curry Making", "Tandoor Cooking", "Regional Specialties", "Traditional Recipes", "Ayurvedic Cooking", "Indian Breads", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 2,
@@ -89,7 +101,9 @@ export const AIDoctorAgents = [
         voiceId: "michael",
         subscriptionRequired: true,
         tags: ["Pediatric Care", "Child Development", "Infant Care", "Teenage Health", "Vaccinations", "Growth Issues", "Behavioral Problems", "School Health", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 3,
@@ -102,7 +116,9 @@ export const AIDoctorAgents = [
         voiceId: "davis",
         subscriptionRequired: true,
         tags: ["Dermatology", "Acne Treatment", "Skin Rashes", "Eczema", "Psoriasis", "Moles & Spots", "Skin Infections", "Anti-Aging", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 4,
@@ -115,7 +131,9 @@ export const AIDoctorAgents = [
         voiceId: "donna",
         subscriptionRequired: true,
         tags: ["Mental Health", "Anxiety Support", "Depression Help", "Stress Management", "Emotional Wellness", "Coping Strategies", "Mindfulness", "Behavioral Therapy", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 5,
@@ -128,7 +146,9 @@ export const AIDoctorAgents = [
         voiceId: "jennifer",
         subscriptionRequired: true,
         tags: ["Nutrition Planning", "Weight Loss", "Weight Gain", "Meal Planning", "Diabetes Diet", "Heart-Healthy Diet", "Sports Nutrition", "Food Allergies", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 6,
@@ -141,7 +161,9 @@ export const AIDoctorAgents = [
         voiceId: "donna",
         subscriptionRequired: true,
         tags: ["Cardiology", "High Blood Pressure", "Chest Pain", "Heart Palpitations", "Cholesterol", "Heart Disease", "Arrhythmia", "Heart Attack Prevention", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 7,
@@ -154,7 +176,9 @@ export const AIDoctorAgents = [
         voiceId: "melissa",
         subscriptionRequired: true,
         tags: ["ENT Specialist", "Ear Infections", "Sore Throat", "Sinus Problems", "Hearing Loss", "Tinnitus", "Allergic Rhinitis", "Voice Problems", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 8,
@@ -167,7 +191,9 @@ export const AIDoctorAgents = [
         voiceId: "ruby",
         subscriptionRequired: true,
         tags: ["Orthopedic Care", "Back Pain", "Knee Pain", "Arthritis", "Sports Injuries", "Fractures", "Joint Stiffness", "Muscle Strains", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 9,
@@ -180,7 +206,9 @@ export const AIDoctorAgents = [
         voiceId: "will",
         subscriptionRequired: true,
         tags: ["Women's Health", "Menstrual Issues", "PCOS", "Menopause", "Birth Control", "Pregnancy Care", "Hormonal Imbalance", "Fertility", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 10,
@@ -193,7 +221,9 @@ export const AIDoctorAgents = [
         voiceId: "chris",
         subscriptionRequired: true,
         tags: ["Dental Care", "Toothache", "Gum Disease", "Cavities", "Teeth Whitening", "Bad Breath", "Dental Hygiene", "Tooth Sensitivity", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 11,
@@ -206,7 +236,9 @@ export const AIDoctorAgents = [
         voiceId: "jennifer",
         subscriptionRequired: true,
         tags: ["Senior Care", "Elderly Health", "Memory Care", "Mobility Issues", "Medication Management", "Caregiver Support", "Aging in Place", "Family Communication", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 12,
@@ -219,7 +251,9 @@ export const AIDoctorAgents = [
         voiceId: "melissa",
         subscriptionRequired: true,
         tags: ["Fitness Training", "Weight Loss", "Muscle Building", "Cardio Workouts", "Strength Training", "Exercise Plans", "Body Transformation", "Athletic Performance", "Premium Plan"],
-        gender: "female"
+        gender: "female",
+        assistantId: "expo",
+        phoneNumber: ""
     },
     {
         id: 13,
@@ -232,6 +266,8 @@ export const AIDoctorAgents = [
         voiceId: "matt",
         subscriptionRequired: true,
         tags: ["Legal Consultation", "Contract Review", "Business Law", "Legal Research", "Dispute Resolution", "Intellectual Property", "Regulatory Compliance", "Legal Documentation", "Premium Plan"],
-        gender: "male"
+        gender: "male",
+        assistantId: "expo",
+        phoneNumber: ""
     }
 ];

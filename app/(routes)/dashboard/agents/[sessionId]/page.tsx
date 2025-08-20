@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { Agent } from '../../_components/AgentCard';
-import { Circle, Loader, PhoneCall, PhoneOff, MessageSquare } from 'lucide-react';
+import { Circle, Loader, PhoneCall, PhoneOff, MessageSquare, Phone } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Vapi from '@vapi-ai/web';
@@ -248,6 +248,18 @@ function VoiceAgent() {
                     />
                     <h2 className='mt-2 text-lg'>{sessionDetail.selectedAgent?.specialist}</h2>
                     <p className='text-sm text-gray-400'>{sessionDetail.selectedAgent?.category || 'AI Voice Agent'}</p>
+                    {sessionDetail.selectedAgent?.phoneNumber && (
+                        <div className='my-4 text-center'>
+                            <a 
+                                href={`tel:${sessionDetail.selectedAgent.phoneNumber}`}
+                                className='inline-flex items-center gap-2 text-sm font-medium text-blue-600 hover:text-blue-800 hover:underline transition-colors cursor-pointer'
+                            >
+                                <Phone className='h-4 w-4' />
+                                {sessionDetail.selectedAgent.phoneNumber}
+                            </a>
+                            <p className='text-xs text-gray-500 mt-1'>I am available to you for direct call under this number as well</p>
+                        </div>
+                    )}
                     {sessionDetail.selectedAgent?.description && (
                         <div className='text-sm text-gray-500 mt-1 text-center max-w-md'>
                             <p className={`${!isDescriptionExpanded ? 'line-clamp-2' : ''}`}>
